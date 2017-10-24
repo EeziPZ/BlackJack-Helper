@@ -3,23 +3,26 @@
 
 int main()
 {
-    int card1;
-    int card2;
+    char card1;
+    char card2;
     int playerHand;
     int dealerHand;
     printf("Enter your hand:\n");
-    scanf(" %i", &card1);
-    scanf(" %i", &card2);
+    scanf(" %c", &card1);
+    scanf(" %c", &card2);
 
-    printf("%c\n", card1);
-
-    if ((card1 == "A") || (card2 == "A")){
-        printf("Its 1 or 11");
+    if ((card1 == 'A') || (card2 == 'A')){
+        printf("Its 1 or 11\n");
     }
 
-    playerHand = card1 + card2;
+    if (card1 == 'A'){
 
-    printf("You hand is %d\n", playerHand);
+    }
+
+
+    playerHand = (int)(card1 - '0') + (int)(card2 - '0');
+
+    printf("Your hand is %d\n", playerHand);
 
     printf("Please enter the dealers card.\n");
     scanf("%d", &dealerHand);
