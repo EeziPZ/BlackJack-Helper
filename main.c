@@ -46,7 +46,8 @@ int main()
         sscanf(dealerHandA, "%d", &dealerHand); //Sets the value of the Array to the dealerhand variable
     }
 
-    printf("%d \n", card1 + card2);
+    playerHand = card1 + card2;
+    printf("%d\n", playerHand);
 
     //---------------------Double Hand Below-------------------------
 
@@ -175,18 +176,106 @@ int main()
 
     //---------------------Soft Hand Below----------------------------
 
-    if ((card1 == 'A') || (card2 == 'A')){
+    if (ace == 1 && card1 != card2){  //Checks if one of the cards is an ace and that there are no doubles
         printf("Its 1 or 11\n");
+
+        if (dealerHand == 2){
+
+            if(playerHand <= 20 && playerHand >= 18){
+                printf("Stand\n");
+            }else{
+                printf("Hit\n");
+            }
+        }
+
+        if (dealerHand == 3){
+
+            if(playerHand <= 20 && playerHand >= 19){
+                printf("Stand\n");
+            }else if(playerHand <= 18 && playerHand >= 17){
+                printf("Double\n");
+            }else{
+                printf("Hit\n");
+            }
+        }
+
+        if (dealerHand == 4){
+
+            if(playerHand <= 20 && playerHand >= 19){
+                printf("Stand\n");
+            }else if(playerHand <= 18 && playerHand >= 15){
+                printf("Double\n");
+            }else{
+                printf("Hit\n");
+            }
+        }
+
+        if (dealerHand == 5){
+
+            if(playerHand <= 20 && playerHand >= 19){
+                printf("Stand\n");
+            }else{
+                printf("Double\n");
+            }
+        }
+
+        if (dealerHand == 6){
+
+            if(playerHand <= 20 && playerHand >= 19){
+                printf("Stand\n");
+            }else{
+                printf("Double\n");
+            }
+        }
+
+        if (dealerHand == 7){
+
+            if(playerHand <= 20 && playerHand >= 18){
+                printf("Stand\n");
+            }else{
+                printf("Hit\n");
+            }
+        }
+
+        if (dealerHand == 8){
+
+            if(playerHand <= 20 && playerHand >= 18){
+                printf("Stand\n");
+            }else{
+                printf("Hit\n");
+            }
+        }
+
+        if (dealerHand == 9){
+
+            if(playerHand <= 20 && playerHand >= 19){
+                printf("Stand\n");
+            }else{
+                printf("Hit\n");
+            }
+        }
+
+        if (dealerHand == 10){
+
+            if(playerHand <= 20 && playerHand >= 19){
+                printf("Stand\n");
+            }else{
+                printf("Hit\n");
+            }
+        }
+
+        if (dealerHand == 11){
+
+            if(playerHand <= 20 && playerHand >= 19){
+                printf("Stand\n");
+            }else{
+                printf("Hit\n");
+            }
+        }
+
+
+
     }
-
-    if (card1 == 'A'){
-
-    }
-
-
-    playerHand = (int)(card1 - '0') + (int)(card2 - '0');
-
-    printf("Your hand is %d\n", playerHand);
 
 
 
