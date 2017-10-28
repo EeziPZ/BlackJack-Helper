@@ -9,8 +9,10 @@ int main()
     char card1A[3]; //A for Array
     char card2A[3];
     char dealerHandA[3];
+    char newCardA[3]; //For when the player hits
     int card1;      //Will move Array value into int when I know what it is!
     int card2;
+    int newCard;
     int playerHand;  //Total value of the users hand
     int dealerHand;  //Value of the dealers card
     int ace = 0; //Changes to 1 if there is an Ace
@@ -28,7 +30,7 @@ int main()
         printf("Card 1 is an ace\n");
         card1 = 11; //Sets the value of card1 to the highest Ace value
         ace = 1;  //Will be used for an if statement to determine a soft hand
-    }else if(card1A[0] == 'J' || card1A[0] == 'Q' || card1A[0] == 'K'){
+    }else if(card1A[0] == 'J' || card1A[0] == 'Q' || card1A[0] == 'K'){ //Checks to see if J Q or K is entered, if it is then it sets the card value to 10
         card1 = 10;
     }else{
         sscanf(card1A, "%d", &card1); //Sets the value of the Array to the card1 variable
@@ -39,7 +41,7 @@ int main()
         printf("Card 2 is an ace\n");
         card2 = 11;  //Sets the value of card2 to the highest Ace value
         ace = 1;    //Will be used for an if statement to determine a soft hand
-    }else if(card2A[0] == 'J' || card2A[0] == 'Q' || card2A[0] == 'K'){
+    }else if(card2A[0] == 'J' || card2A[0] == 'Q' || card2A[0] == 'K'){ //Checks to see if J Q or K is entered, if it is then it sets the card value to 10
         card2 = 10;
     }else{
         sscanf(card2A, "%d", &card2); //Sets the value of the Array to the card2 variable
@@ -48,7 +50,7 @@ int main()
     if (dealerHandA[0] == 'A'){ //Find out if the dealers card is an Ace
         printf("Dealer has an ace\n");
         dealerHand = 11; //Sets the value of dealerhand to the highest Ace value
-    }else if(dealerHandA[0] == 'J' || dealerHandA[0] == 'Q' || dealerHandA[0] == 'K'){
+    }else if(dealerHandA[0] == 'J' || dealerHandA[0] == 'Q' || dealerHandA[0] == 'K'){ //Checks to see if J Q or K is entered, if it is then it sets the card value to 10
         card1 = 10;
     }else{
         sscanf(dealerHandA, "%d", &dealerHand); //Sets the value of the Array to the dealerhand variable
@@ -62,9 +64,12 @@ int main()
         return 0;
     }
 
+
+
+
     //---------------------Double Hand Below-------------------------
 
-    if (card1 == card2 && card1A[0] == card2A[0]){
+    if (card1 == card2 && card1A[0] == card2A[0]){ //Checks if the value is the same and if the first digit is the same (For J Q K and A)
         if (card1 != 11){ //finds out if its an ace
             printf("Its a pair of %d's\n", card1); //prints the value if its not an ace
         }else{
@@ -79,6 +84,7 @@ int main()
                 printf("Double\n");
             }else if (card1 == 4){
                 printf("Hit\n");
+                hit = 1;
             }else {
                 printf("Split\n");
             }
@@ -92,6 +98,7 @@ int main()
                 printf("Double\n");
             }else if (card1 == 4){
                 printf("Hit\n");
+                hit = 1;
             }else {
                 printf("Split\n");
             }
@@ -104,6 +111,7 @@ int main()
                 printf("Double\n");
             }else if (card1 == 4){
                 printf("Hit\n");
+                hit = 1;
             }else {
                 printf("Split\n");
             }
@@ -136,6 +144,7 @@ int main()
                 printf("Double\n");
             }else if(card1 == 4 || card1 == 6){
                 printf("Hit\n");
+                hit = 1;
             }else{
                 printf("Split\n");
             }
@@ -150,6 +159,7 @@ int main()
                 printf("Split\n");
             }else{
                 printf("Hit\n");
+                hit = 1;
             }
 
         }else if(dealerHand == 9){
@@ -162,6 +172,7 @@ int main()
                 printf("Split\n");
             }else{
                 printf("Hit\n");
+                hit = 1;
             }
 
         }else if(dealerHand == 10){
@@ -172,6 +183,7 @@ int main()
                 printf("Split\n");
             }else{
                 printf("Hit\n");
+                hit = 1;
             }
 
         }else if(dealerHand == 11){
@@ -182,12 +194,15 @@ int main()
                 printf("Split\n");
             }else{
                 printf("Hit\n");
+                hit = 1;
             }
 
         }
     }
 
     //---------------------Soft Hand Below----------------------------
+    do { //Start of the loop
+        hit = 0; //So the loop only repeats if hit becomes 1;
 
     if (ace == 1 && card1 != card2){  //Checks if one of the cards is an ace and that there are no doubles
 
@@ -197,6 +212,7 @@ int main()
                 printf("Stand\n");
             }else{
                 printf("Hit\n");
+                hit = 1;
             }
         }
 
@@ -208,6 +224,7 @@ int main()
                 printf("Double\n");
             }else{
                 printf("Hit\n");
+                hit = 1;
             }
         }
 
@@ -219,6 +236,7 @@ int main()
                 printf("Double\n");
             }else{
                 printf("Hit\n");
+                hit = 1;
             }
         }
 
@@ -246,6 +264,7 @@ int main()
                 printf("Stand\n");
             }else{
                 printf("Hit\n");
+                hit = 1;
             }
         }
 
@@ -255,6 +274,7 @@ int main()
                 printf("Stand\n");
             }else{
                 printf("Hit\n");
+                hit = 1;
             }
         }
 
@@ -264,6 +284,7 @@ int main()
                 printf("Stand\n");
             }else{
                 printf("Hit\n");
+                hit = 1;
             }
         }
 
@@ -273,6 +294,7 @@ int main()
                 printf("Stand\n");
             }else{
                 printf("Hit\n");
+                hit = 1;
             }
         }
 
@@ -282,6 +304,7 @@ int main()
                 printf("Stand\n");
             }else{
                 printf("Hit\n");
+                hit = 1;
             }
         }
 
@@ -306,7 +329,8 @@ int main()
             }else if(playerHand > 9 && playerHand < 12){
                 printf("Double\n");
             }else if (playerHand > 4){
-                printf("Hit");
+                printf("Hit\n");
+                hit = 1;
             }
 
 
@@ -317,7 +341,8 @@ int main()
             }else if(playerHand > 8 && playerHand < 12){
                 printf("Double\n");
             }else if (playerHand > 4){
-                printf("Hit");
+                printf("Hit\n");
+                hit = 1;
             }
 
     }else if(dealerHand == 4){
@@ -327,7 +352,8 @@ int main()
             }else if(playerHand > 8 && playerHand < 12){
                 printf("Double\n");
             }else if (playerHand > 4){
-                printf("Hit");
+                printf("Hit\n");
+                hit = 1;
             }
 
     }else if(dealerHand == 5){
@@ -337,7 +363,8 @@ int main()
             }else if(playerHand > 8 && playerHand < 12){
                 printf("Double\n");
             }else if (playerHand > 4){
-                printf("Hit");
+                printf("Hit\n");
+                hit = 1;
             }
 
     }else if(dealerHand == 6){
@@ -347,7 +374,8 @@ int main()
             }else if(playerHand > 8 && playerHand < 12){
                 printf("Double\n");
             }else if (playerHand > 4){
-                printf("Hit");
+                printf("Hit\n");
+                hit = 1;
             }
 
     }else if(dealerHand == 7){
@@ -357,7 +385,8 @@ int main()
             }else if(playerHand > 9 && playerHand < 12){
                 printf("Double\n");
             }else if (playerHand > 4){
-                printf("Hit");
+                printf("Hit\n");
+                hit = 1;
             }
 
     }else if(dealerHand == 8){
@@ -367,7 +396,8 @@ int main()
             }else if(playerHand > 9 && playerHand < 12){
                 printf("Double\n");
             }else if (playerHand > 4){
-                printf("Hit");
+                printf("Hit\n");
+                hit = 1;
             }
 
     }else if(dealerHand == 9){
@@ -377,7 +407,8 @@ int main()
             }else if(playerHand > 9 && playerHand < 12){
                 printf("Double\n");
             }else if (playerHand > 4){
-                printf("Hit");
+                printf("Hit\n");
+                hit = 1;
             }
 
     }else if(dealerHand == 10){
@@ -387,7 +418,8 @@ int main()
             }else if(playerHand > 10 && playerHand < 12){
                 printf("Double\n");
             }else if (playerHand > 4){
-                printf("Hit");
+                printf("Hit\n");
+                hit = 1;
             }
 
     }else if(dealerHand == 11){
@@ -395,12 +427,35 @@ int main()
             if(playerHand >= 17){
                 printf("STAND\n");
             }else if (playerHand > 4){
-                printf("Hit");
+                printf("Hit\n");
+                hit = 1;
             }
 
     }
 
    }
+
+   if (hit ==1){  //If the player is told to hit, the following code will run.
+        printf("Enter new card\n");
+        scanf(" %s", &newCardA);
+
+        if (newCardA[0] == 'A'){ //Find out if the card is an Ace
+            printf("New card is an ace\n");
+            newCard = 11; //Sets the value of newCard to the highest Ace value
+            ace = 1;  //Will be used for an if statement to determine a soft hand
+        }else if(newCardA[0] == 'J' || newCardA[0] == 'Q' || newCardA[0] == 'K'){ //Checks to see if J Q or K is entered, if it is then it sets the card value to 10
+            newCard = 10;
+        }else{
+            sscanf(newCardA, "%d", &newCard); //Sets the value of the Array to the card1 variable
+        }
+
+        playerHand = newCard + playerHand;
+
+        printf("%d\n", playerHand);
+
+   }
+
+} while (hit == 1);
 
 
     return 0;
