@@ -19,6 +19,7 @@ int main()
     int hit = 0; //Changes to 1 when its a hit/double to allow the user to enter another card
     int split = 0; //Changes to 1 when the user splits. Allows 2 more cards to be entered.
     int loop = 0; //Repeats the loop if its equal to 1
+    int cardDouble = 0; // Used to prevent the code from running the double and hard section.
     printf("Enter your hand:\n"); //Get the first 2 card values
     scanf(" %s", &card1A);
     scanf(" %s", &card2A);
@@ -52,7 +53,7 @@ int main()
         printf("Dealer has an ace\n");
         dealerHand = 11; //Sets the value of dealerhand to the highest Ace value
     }else if(dealerHandA[0] == 'J' || dealerHandA[0] == 'Q' || dealerHandA[0] == 'K'){ //Checks to see if J Q or K is entered, if it is then it sets the card value to 10
-        card1 = 10;
+        dealerHand = 10;
     }else{
         sscanf(dealerHandA, "%d", &dealerHand); //Sets the value of the Array to the dealerhand variable
     }
@@ -71,6 +72,7 @@ int main()
     //---------------------Double Hand Below-------------------------
 
     if (card1 == card2 && card1A[0] == card2A[0]){ //Checks if the value is the same and if the first digit is the same (For J Q K and A)
+        cardDouble = 1; // Sets this to one so that the program does not run through the hard hand code.
         if (card1 != 11){ //finds out if its an ace
             printf("Its a pair of %d's\n", card1); //prints the value if its not an ace
         }else{
@@ -83,7 +85,7 @@ int main()
                 printf("STAND\n");
             }else if(card1 == 5){
                 printf("Double\n");
-                hit = 1;
+
             }else if (card1 == 4){
                 printf("Hit\n");
                 hit = 1;
@@ -99,7 +101,7 @@ int main()
                 printf("STAND\n");
             }else if(card1 == 5){
                 printf("Double\n");
-                hit = 1;
+
             }else if (card1 == 4){
                 printf("Hit\n");
                 hit = 1;
@@ -114,7 +116,7 @@ int main()
                 printf("STAND\n");
             }else if(card1 == 5){
                 printf("Double\n");
-                hit = 1;
+
             }else if (card1 == 4){
                 printf("Hit\n");
                 hit = 1;
@@ -129,7 +131,7 @@ int main()
                 printf("STAND\n");
             }else if(card1 == 5){
                 printf("Double\n");
-                hit = 1;
+
             }else {
                 printf("Split\n");
                 split = 2;
@@ -141,7 +143,7 @@ int main()
                 printf("STAND\n");
             }else if(card1 == 5){
                 printf("Double\n");
-                hit = 1;
+
             }else {
                 printf("Split\n");
                 split = 2;
@@ -153,7 +155,7 @@ int main()
                 printf("STAND\n");
             }else if(card1 == 5){
                 printf("Double\n");
-                hit = 1;
+
             }else if(card1 == 4 || card1 == 6){
                 printf("Hit\n");
                 hit = 1;
@@ -168,7 +170,7 @@ int main()
                 printf("STAND\n");
             }else if(card1 == 5){
                 printf("Double\n");
-                hit = 1;
+
             }else if(card1 == 11 || card1 == 9 || card1 == 8){
                 printf("Split\n");
                 split = 2;
@@ -183,7 +185,7 @@ int main()
                 printf("STAND\n");
             }else if(card1 == 5){
                 printf("Double\n");
-                hit = 1;
+
             }else if(card1 == 11 || card1 == 9 || card1 == 8){
                 printf("Split\n");
                 split = 2;
@@ -224,7 +226,23 @@ int main()
 
         loop = 0; //So the loop only repeats if hit becomes 1;
 
-    if (ace == 1 && card1 != card2){  //Checks if one of the cards is an ace and that there are no doubles
+        if (playerHand == 21){
+            printf("Blackjack");
+            return 0;
+        }
+
+        if (playerHand > 21 && ace == 0){
+            printf("Bust");
+            return 0;
+        }
+
+        if (playerHand > 21 && ace > 0 && cardDouble == 0){
+            playerHand = playerHand - 10;
+            printf("%d\n", playerHand);
+            ace --;
+        }
+
+    if (ace == 1 && cardDouble == 0){  //Checks if one of the cards is an ace
 
         if (dealerHand == 2){
 
@@ -242,7 +260,7 @@ int main()
                 printf("Stand\n");
             }else if(playerHand <= 18 && playerHand >= 17){
                 printf("Double\n");
-                hit = 1;
+
             }else{
                 printf("Hit\n");
                 hit = 1;
@@ -255,7 +273,7 @@ int main()
                 printf("Stand\n");
             }else if(playerHand <= 18 && playerHand >= 15){
                 printf("Double\n");
-                hit = 1;
+
             }else{
                 printf("Hit\n");
                 hit = 1;
@@ -268,7 +286,7 @@ int main()
                 printf("Stand\n");
             }else{
                 printf("Double\n");
-                hit = 1;
+
             }
         }
 
@@ -278,7 +296,7 @@ int main()
                 printf("Stand\n");
             }else{
                 printf("Double\n");
-                hit = 1;
+
             }
         }
 
@@ -343,7 +361,7 @@ int main()
     //---------------------Hard Hand Below----------------------------
 
 
-   if (ace == 0 && card1A[0] != card2A[0]){ //Makes sure there are no aces and no double
+   if (ace == 0 && cardDouble == 0){ //Makes sure there are no aces
 
 
     if(dealerHand == 2){
@@ -352,7 +370,7 @@ int main()
                 printf("STAND\n");
             }else if(playerHand > 9 && playerHand < 12){
                 printf("Double\n");
-                hit = 1;
+
             }else if (playerHand > 4){
                 printf("Hit\n");
                 hit = 1;
@@ -365,7 +383,7 @@ int main()
                 printf("STAND\n");
             }else if(playerHand > 8 && playerHand < 12){
                 printf("Double\n");
-                hit = 1;
+
             }else if (playerHand > 4){
                 printf("Hit\n");
                 hit = 1;
@@ -377,7 +395,7 @@ int main()
                 printf("STAND\n");
             }else if(playerHand > 8 && playerHand < 12){
                 printf("Double\n");
-                hit = 1;
+
             }else if (playerHand > 4){
                 printf("Hit\n");
                 hit = 1;
@@ -389,7 +407,7 @@ int main()
                 printf("STAND\n");
             }else if(playerHand > 8 && playerHand < 12){
                 printf("Double\n");
-                hit = 1;
+
             }else if (playerHand > 4){
                 printf("Hit\n");
                 hit = 1;
@@ -401,7 +419,7 @@ int main()
                 printf("STAND\n");
             }else if(playerHand > 8 && playerHand < 12){
                 printf("Double\n");
-                hit = 1;
+
             }else if (playerHand > 4){
                 printf("Hit\n");
                 hit = 1;
@@ -413,7 +431,7 @@ int main()
                 printf("STAND\n");
             }else if(playerHand > 9 && playerHand < 12){
                 printf("Double\n");
-                hit = 1;
+
             }else if (playerHand > 4){
                 printf("Hit\n");
                 hit = 1;
@@ -425,7 +443,7 @@ int main()
                 printf("STAND\n");
             }else if(playerHand > 9 && playerHand < 12){
                 printf("Double\n");
-                hit = 1;
+
             }else if (playerHand > 4){
                 printf("Hit\n");
                 hit = 1;
@@ -437,7 +455,7 @@ int main()
                 printf("STAND\n");
             }else if(playerHand > 9 && playerHand < 12){
                 printf("Double\n");
-                hit = 1;
+
             }else if (playerHand > 4){
                 printf("Hit\n");
                 hit = 1;
@@ -449,7 +467,7 @@ int main()
                 printf("STAND\n");
             }else if(playerHand > 10 && playerHand < 12){
                 printf("Double\n");
-                hit = 1;
+
             }else if (playerHand > 4){
                 printf("Hit\n");
                 hit = 1;
@@ -487,8 +505,9 @@ int main()
         printf("%d\n", playerHand);
 
         hit = 0; //So the loop only repeats if hit becomes 1;
+        cardDouble = 0; //So that it can run through the hard/soft section.
         loop = 1;
-        printf("%d", loop);
+
 
    }
 
@@ -508,8 +527,10 @@ int main()
         }
 
         playerHand = card1 + newCard;
+        printf("%d\n", playerHand);
 
         split --;
+        cardDouble = 0; // So the code can run for hard and soft hands.
         loop = 1;
         //will have to think of something...
    }
