@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//Notes.
-//When the program tells you to hit, ask the user what card they got after.
+int cardValue(char cardA[0]);
 
 int main()
 {
@@ -27,10 +26,6 @@ do { //So the game keeps going after a hand
     int cardDouble = 0; // Used to prevent the code from running the double and hard section.
     int splitTest = 0;
 
-
-
-
-
     printf("Please enter your first card\n");
     scanf(" %s", &card1A);      //Gets the value for card1
         //system("cls"); //Used to clear screen on Windows
@@ -46,49 +41,15 @@ do { //So the game keeps going after a hand
 
     //------Work out what the cards are and place them into an int var------
 
-    if (card1A[0] == 'A'){ //Find out if the first card is an Ace
-        card1 = 11; //Sets the value of card1 to the highest Ace value
-        ace = 1;  //Will be used for an if statement to determine a soft hand
-    }else if(card1A[0] == 'J' || card1A[0] == 'Q' || card1A[0] == 'K'){ //Checks to see if J Q or K is entered, if it is then it sets the card value to 10
-        card1 = 10;
-    }else{
-        sscanf(card1A, "%d", &card1); //Sets the value of the Array to the card1 variable
+    if (card1A[0] == 'A' || card2A[0] == 'A'){ //Find out if there is an Ace
+       ace = 1;  //Will be used for an if statement to determine a soft hand
     }
 
-
-    if (card2A[0] == 'A'){ //Find out if the second card is an Ace
-        card2 = 11;  //Sets the value of card2 to the highest Ace value
-        ace = 1;    //Will be used for an if statement to determine a soft hand
-    }else if(card2A[0] == 'J' || card2A[0] == 'Q' || card2A[0] == 'K'){ //Checks to see if J Q or K is entered, if it is then it sets the card value to 10
-        card2 = 10;
-    }else{
-        sscanf(card2A, "%d", &card2); //Sets the value of the Array to the card2 variable
-    }
-
-    if (dealerHandA[0] == 'A'){ //Find out if the dealers card is an Ace
-        dealerHand = 11; //Sets the value of dealerhand to the highest Ace value
-    }else if(dealerHandA[0] == 'J' || dealerHandA[0] == 'Q' || dealerHandA[0] == 'K'){ //Checks to see if J Q or K is entered, if it is then it sets the card value to 10
-        dealerHand = 10;
-    }else{
-        sscanf(dealerHandA, "%d", &dealerHand); //Sets the value of the Array to the dealerhand variable
-    }
+    card1 = cardValue(card1A); //Gets the value from the function and adds it to card1
+    card2 = cardValue(card2A); //Gets the value from the function and adds it to card2
+    dealerHand = cardValue(dealerHandA); //Gets the value from the function and adds it to dealerHand
 
     playerHand = card1 + card2;
-
-    //if (playerHand == 21){
-   //     printf("BlackJack\n\n");
-//
-    //    printf("Do you want to play again? (Y/N)\n");
-    //    scanf(" %c", &playAgain);
-    //    if (playAgain == 'Y'){
-    //        play = 1; //Lets the loop go again.
-   //     }else{
-     //       return 0;
-       // }
-   // }
-
-
-
 
     //---------------------Double Hand Below-------------------------
 
@@ -103,9 +64,7 @@ do { //So the game keeps going after a hand
             }else if(card1 == 5){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else if (card1 == 4){
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }else {
@@ -122,9 +81,7 @@ do { //So the game keeps going after a hand
             }else if(card1 == 5){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else if (card1 == 4){
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }else {
@@ -140,9 +97,7 @@ do { //So the game keeps going after a hand
             }else if(card1 == 5){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else if (card1 == 4){
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }else {
@@ -158,7 +113,6 @@ do { //So the game keeps going after a hand
             }else if(card1 == 5){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else {
                 printf("Split\n\n");
                 split = 2;
@@ -172,7 +126,6 @@ do { //So the game keeps going after a hand
             }else if(card1 == 5){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else {
                 printf("Split\n\n");
                 split = 2;
@@ -186,9 +139,7 @@ do { //So the game keeps going after a hand
             }else if(card1 == 5){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else if(card1 == 4 || card1 == 6){
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }else{
@@ -204,12 +155,10 @@ do { //So the game keeps going after a hand
             }else if(card1 == 5){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else if(card1 == 11 || card1 == 9 || card1 == 8){
                 printf("Split\n\n");
                 split = 2;
             }else{
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -222,12 +171,10 @@ do { //So the game keeps going after a hand
             }else if(card1 == 5){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else if(card1 == 11 || card1 == 9 || card1 == 8){
                 printf("Split\n\n");
                 split = 2;
             }else{
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -241,7 +188,6 @@ do { //So the game keeps going after a hand
                 printf("Split\n\n");
                 split = 2;
             }else{
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -255,48 +201,28 @@ do { //So the game keeps going after a hand
                 printf("Split\n\n");
                 split = 2;
             }else{
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
-
         }
     }
 
     //---------------------Soft Hand Below----------------------------
+
     do { //Start of the loop
 
         loop = 0; //So the loop only repeats if hit becomes 1;
 
         if (playerHand == 21){
             printf("Blackjack\n\n");
-
             splitTest = 1;
-
-               // printf("Do you want to play again? (Y/N)\n");
-                //scanf(" %c", &playAgain);
-               // if (playAgain == 'Y'){
-               //     play = 1; //Lets the loop go again.
-              //  }else{
-               //     return 0;
-              //  }
-
 
         }
 
         if (playerHand > 21 && ace == 0){
             printf("Bust\n\n");
-
             splitTest = 1;
 
-
-           // printf("Do you want to play again? (Y/N)\n");
-            //scanf(" %c", &playAgain);
-            //if (playAgain == 'Y'){
-           //     play = 1; //Lets the loop go again.
-           // }else{
-           //     return 0;
-           // }
         }
 
         if (playerHand > 21 && ace > 0 && cardDouble == 0){
@@ -312,7 +238,6 @@ do { //So the game keeps going after a hand
                 printf("Stand\n\n");
                 splitTest = 1;
             }else{
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -326,9 +251,7 @@ do { //So the game keeps going after a hand
             }else if(playerHand <= 18 && playerHand >= 17){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else{
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -342,9 +265,7 @@ do { //So the game keeps going after a hand
             }else if(playerHand <= 18 && playerHand >= 15){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else{
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -358,7 +279,6 @@ do { //So the game keeps going after a hand
             }else{
                 printf("Double\n\n");
                 splitTest = 1;
-
             }
         }
 
@@ -370,7 +290,6 @@ do { //So the game keeps going after a hand
             }else{
                 printf("Double\n\n");
                 splitTest = 1;
-
             }
         }
 
@@ -380,7 +299,6 @@ do { //So the game keeps going after a hand
                 printf("Stand\n\n");
                 splitTest = 1;
             }else{
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -392,7 +310,6 @@ do { //So the game keeps going after a hand
                 printf("Stand\n\n");
                 splitTest = 1;
             }else{
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -404,7 +321,6 @@ do { //So the game keeps going after a hand
                 printf("Stand\n\n");
                 splitTest = 1;
             }else{
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -416,7 +332,6 @@ do { //So the game keeps going after a hand
                 printf("Stand\n\n");
                 splitTest = 1;
             }else{
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -428,25 +343,15 @@ do { //So the game keeps going after a hand
                 printf("Stand\n\n");
                 splitTest = 1;
             }else{
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
         }
-
-
-
     }
-
-
-
-
 
     //---------------------Hard Hand Below----------------------------
 
-
    if (ace == 0 && cardDouble == 0 && playerHand < 21){ //Makes sure there are no aces
-
 
     if(dealerHand == 2){
 
@@ -456,13 +361,10 @@ do { //So the game keeps going after a hand
             }else if(playerHand > 9 && playerHand < 12){
                 printf("Double\n\n");
                 splitTest = 1;
-
-            }else if (playerHand > 4){
-                printf("Hit\n");
+            }else if (playerHand >= 4){
                 hit = 1;
                 splitTest = 2;
             }
-
 
     }else if(dealerHand == 3){
 
@@ -472,9 +374,7 @@ do { //So the game keeps going after a hand
             }else if(playerHand > 8 && playerHand < 12){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else if (playerHand > 4){
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -487,9 +387,7 @@ do { //So the game keeps going after a hand
             }else if(playerHand > 8 && playerHand < 12){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else if (playerHand > 4){
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -502,9 +400,7 @@ do { //So the game keeps going after a hand
             }else if(playerHand > 8 && playerHand < 12){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else if (playerHand > 4){
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -517,9 +413,7 @@ do { //So the game keeps going after a hand
             }else if(playerHand > 8 && playerHand < 12){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else if (playerHand > 4){
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -532,9 +426,7 @@ do { //So the game keeps going after a hand
             }else if(playerHand > 9 && playerHand < 12){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else if (playerHand > 4){
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -547,9 +439,7 @@ do { //So the game keeps going after a hand
             }else if(playerHand > 9 && playerHand < 12){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else if (playerHand > 4){
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -562,9 +452,7 @@ do { //So the game keeps going after a hand
             }else if(playerHand > 9 && playerHand < 12){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else if (playerHand > 4){
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -577,9 +465,7 @@ do { //So the game keeps going after a hand
             }else if(playerHand > 10 && playerHand < 12){
                 printf("Double\n\n");
                 splitTest = 1;
-
             }else if (playerHand > 4){
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
@@ -590,11 +476,9 @@ do { //So the game keeps going after a hand
                 printf("Stand\n\n");
                 splitTest = 1;
             }else if (playerHand > 4){
-                printf("Hit\n");
                 hit = 1;
                 splitTest = 2;
             }
-
     }
 
    }
@@ -606,47 +490,32 @@ do { //So the game keeps going after a hand
         printf("Enter new card\n");
         scanf(" %s", &newCardA);
 
-        if (newCardA[0] == 'A'){ //Find out if the card is an Ace
-            newCard = 11; //Sets the value of newCard to the highest Ace value
+        if (newCardA[0] == 'A'){ //Find out if there is an Ace
             ace = 1;  //Will be used for an if statement to determine a soft hand
-        }else if(newCardA[0] == 'J' || newCardA[0] == 'Q' || newCardA[0] == 'K'){ //Checks to see if J Q or K is entered, if it is then it sets the card value to 10
-            newCard = 10;
-        }else{
-            sscanf(newCardA, "%d", &newCard); //Sets the value of the Array to the card1 variable
         }
+        newCard = cardValue(newCardA); //Gets the value from the function and adds it to newCard
 
         playerHand = newCard + playerHand;
 
         //system("cls"); //Used to clear screen on Windows
         system("clear"); //Used to clear screen on Unix
 
-        //printf("%d\n", playerHand);
-
         hit = 0; //So the loop only repeats if hit becomes 1;
         cardDouble = 0; //So that it can run through the hard/soft section.
         loop = 1;
-
-
    }
 
    if (split > 0 && splitTest != 2){
-
-            //system("cls"); //Used to clear screen on Windows
-            //system("clear"); //Used to clear screen on Unix
 
         if (split == 2 && splitTest == 0){
             printf("(First Hand)\n");
             printf("Enter new card\n");
             scanf(" %s", &newCardA);
 
-            if (newCardA[0] == 'A'){ //Find out if the card is an Ace
-                newCard = 11; //Sets the value of newCard to the highest Ace value
+            if (newCardA[0] == 'A'){ //Find out if there is an Ace
                 ace = 1;  //Will be used for an if statement to determine a soft hand
-            }else if(newCardA[0] == 'J' || newCardA[0] == 'Q' || newCardA[0] == 'K'){ //Checks to see if J Q or K is entered, if it is then it sets the card value to 10
-                newCard = 10;
-            }else{
-                sscanf(newCardA, "%d", &newCard); //Sets the value of the Array to the card1 variable
             }
+            newCard = cardValue(newCardA); //Gets the value from the function and adds it to newCard
 
             playerHand = card1 + newCard;
 
@@ -664,20 +533,15 @@ do { //So the game keeps going after a hand
             printf("Enter new card\n");
             scanf(" %s", &newCardA);
 
-            if (newCardA[0] == 'A'){ //Find out if the card is an Ace
-                newCard = 11; //Sets the value of newCard to the highest Ace value
+            if (newCardA[0] == 'A'){ //Find out if there is an Ace
                 ace = 1;  //Will be used for an if statement to determine a soft hand
-            }else if(newCardA[0] == 'J' || newCardA[0] == 'Q' || newCardA[0] == 'K'){ //Checks to see if J Q or K is entered, if it is then it sets the card value to 10
-                newCard = 10;
-            }else{
-                sscanf(newCardA, "%d", &newCard); //Sets the value of the Array to the card1 variable
             }
+            newCard = cardValue(newCardA); //Gets the value from the function and adds it to newCard
 
             playerHand = card1 + newCard;
 
             //system("cls"); //Used to clear screen on Windows
             system("clear"); //Used to clear screen on Unix
-
 
             cardDouble = 0; // So the code can run for hard and soft hands.
             loop = 1;
@@ -687,11 +551,7 @@ do { //So the game keeps going after a hand
         split --;
    }
 
-
-
-
 } while (loop == 1);
-
 
         printf("Do you want to play again? (Y/N)\n");
         scanf(" %c", &playAgain);
@@ -704,7 +564,20 @@ do { //So the game keeps going after a hand
             return 0;
         }
 
-
 } while (play == 1);
 
+}
+
+int cardValue(char cardA[0]) {
+    int card;
+
+    if (cardA[0] == 'A'){
+        card = 11;
+    }else if(cardA[0] == 'J' || cardA[0] == 'Q' || cardA[0] == 'K'){
+        card = 10;
+    }else{
+        sscanf(cardA, "%d", &card);
+    }
+
+    return card;
 }
