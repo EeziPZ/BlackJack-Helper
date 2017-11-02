@@ -1,5 +1,9 @@
 # depslib dependency file v1.0
-1509448876 source:/home/jamiehlake/Desktop/BlackJack-helper/main.c
+1509637155 source:/home/jamiehlake/Desktop/BlackjackHelper2/main.c
+	<stdio.h>
+	<stdlib.h>
+
+1509637560 source:/home/jamiehlake/Desktop/BlackJack-helper/main.c
 	<stdio.h>
 	<stdlib.h>
 
